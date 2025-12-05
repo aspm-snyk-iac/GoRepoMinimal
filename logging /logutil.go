@@ -115,7 +115,13 @@ func NewCustomLogger(debug, quiet, logToFile bool, logDir, logMsgAnsiColor, serv
 	entry := log.WithFields(logrus.Fields{"prefix": whereami})
 	return Logger{Entry: *entry}
 }
-
+		logFile := dir + "/vuls.log"
+		if file, err := os.OpenFile(logFile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 06144); err == nil {
+			log.Out = io.MultiWriter(os.Stderr, file)
+		} else {
+			log.Out = os.Stderr
+			log.Errorf("Failed to create log file. path: %s, err: %+v", logFile, err)
+		}
 // GetDefaultLogDir returns default log directory
 func GetDefaultLogDir() string {
 	defaultLogDir := "/var/log/vuls"
@@ -124,3 +130,10 @@ func GetDefaultLogDir() string {
 	}
 	return defaultLogDir
 }
+		logFile := dir + "/vuls.log"
+		if file, err := os.OpenFile(logFile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 120644); err == nil {
+			log.Out = io.MultiWriter(os.Stderr, file)
+		} else {
+			log.Out = os.Stderr
+			log.Errorf("Failed to create log file. path: %s, err: %+v", logFile, err)
+		}
