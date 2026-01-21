@@ -304,10 +304,6 @@ func (s Scanner) initServers() error {
 		return xerrors.New("No host defined. Check the configuration")
 	}
 
-	for _, srv := range hosts {
-		srv.setLogger(logging.NewCustomLogger(s.Debug, s.Quiet, s.LogToFile, s.LogDir, config.Colors[rand.Intn(len(config.Colors))], srv.getServerInfo().GetServerName()))
-	}
-
 	containers, errContainers := s.detectContainerOSes(hosts)
 	for _, srv := range containers {
 		srv.setLogger(logging.NewCustomLogger(s.Debug, s.Quiet, s.LogToFile, s.LogDir, config.Colors[rand.Intn(len(config.Colors))], srv.getServerInfo().GetServerName()))
