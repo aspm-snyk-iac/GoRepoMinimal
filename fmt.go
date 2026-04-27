@@ -4,7 +4,6 @@ import "fmt"
 
 // Hardcoded secrets (for testing Gitleaks detection)
 
-const awsAccessKey = "AKIA1234567890EXAMPLE"
 const awsSecretKey = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
 
 // GitHub token pattern
